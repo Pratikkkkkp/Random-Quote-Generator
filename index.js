@@ -27,3 +27,7 @@ async function getQuote() {
     btnEl.disabled = false;
   }
 }
+
+getQuote()
+
+btnEl.addEventListener("click", getQuote);
