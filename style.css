@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Courier New", Courier, monospace;
-    background: linear-gradient(to left bottom, #d19898, #a83092);
+    background: linear-gradient(to bottom right, #7b5626, #c6ab88 );
   }
   
   .container {
