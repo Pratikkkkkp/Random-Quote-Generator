@@ -5,11 +5,11 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Courier New", Courier, monospace;
-    background: linear-gradient(to bottom right, #7b5626, #c6ab88 );
+    background: linear-gradient(to bottom right, #81acb8, #C2C8C5 );
   }
   
   .container {
-    background-color: rgba(255, 255, 255, 0.1);
+    background:linear-gradient(to top, #aa83b3, #b86aad );
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
     padding: 30px;
     border-radius: 15px;
