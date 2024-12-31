@@ -19,8 +19,8 @@ body {
 
 .container {
   background: linear-gradient(to top, #222, #333);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3),
+    0 0 75px rgba(0, 255, 255, 0.2); /* Enhanced glowing effect */
   padding: 30px;
   border-radius: 15px;
   width: 90%;
@@ -37,6 +37,7 @@ body {
   animation: fadeIn 1s ease-out; /* Fade-in animation for heading */
 }
 
+/* Fade-in and fade-out for quote and author */
 .quote {
   font-size: 30px;
   font-weight: 600;
@@ -82,29 +83,52 @@ body {
   gap: 10px;
 }
 
-.theme-btn,
+/* Updated Copy Quote Button */
 .copy-btn {
   font-size: 16px;
-  padding: 8px 15px;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
-  border: none;
-  transition: background 0.3s ease, transform 0.3s ease;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Light background for contrast */
+  border: 1px solid #ffffff;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
 }
 
-.theme-btn {
-  background-color: #333;
-}
-
-.copy-btn {
-  background-color: #555;
-}
-
-.theme-btn:hover,
 .copy-btn:hover {
-  background-color: #444;
-  transform: scale(1.05); /* Slight scale effect on hover */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Slightly lighter background on hover */
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Updated Light/Dark Mode Button */
+.theme-btn {
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.theme-btn:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transform: scale(1.05);
 }
 
 .footer {
@@ -120,7 +144,6 @@ body {
   color: #fff;
   z-index: 10;
 }
-
 /* Animations */
 @keyframes fadeIn {
   0% {
@@ -131,6 +154,25 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 1s forwards;
+}
+
+.fadeOut {
+  animation: fadeOut 0.5s forwards;
 }
 
 /* Responsive Styles */
