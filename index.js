@@ -1,11 +1,11 @@
-const btnEl = document.getElementById("btn");
-const quoteEl = document.getElementById("quote");
-const authorEl = document.getElementById("author");
+const btn = document.getElementById("btn");
+const quoteEl = document.getElementById("quote"); // Correct element reference
+const authorEl = document.getElementById("author"); // Correct element reference
 const copyBtn = document.getElementById("copyBtn");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 
 // API URL
-const apiURL = "https://api.api-ninjas.com/v1/quotes?category=inspirational";
+const apiURL = "https://api.api-ninjas.com/v1/quotes";
 const apiKey = "EQoAb5esfKGa52Jq1VINuA==NRuQuuCawmU5L3m9"; // Replace with your API key
 
 let isDarkMode = true; // Initialize theme to dark mode
@@ -17,8 +17,8 @@ async function getQuote() {
     authorEl.classList.add("fadeOut");
 
     // Change the button text and disable it
-    btnEl.innerText = "Loading...";
-    btnEl.disabled = true;
+    btn.innerText = "Loading..."; // Use `btn` instead of `btnEl`
+    btn.disabled = true;
 
     // Wait for the fade-out to complete before fetching a new quote
     await new Promise((resolve) => setTimeout(resolve, 500)); // 500ms delay to match fade-out duration
@@ -26,7 +26,7 @@ async function getQuote() {
     // Fetching the quote
     const response = await fetch(apiURL, {
       headers: {
-        "X-Api-Key": apiKey,
+        "X-Api-Key": "EQoAb5esfKGa52Jq1VINuA==NRuQuuCawmU5L3m9", // Correct API key syntax
       },
     });
 
@@ -35,31 +35,41 @@ async function getQuote() {
     }
 
     const data = await response.json();
-    const quote = data[0].quote;
-    const author = data[0].author;
 
-    // Displaying the new quote
-    quoteEl.innerText = quote || "No quote available.";
-    authorEl.innerText = `~ ${author || "Unknown"}`;
+    // Log the entire response to inspect its structure
+    console.log("API Response:", data);
 
-    // Reset the animation classes and trigger reflow to restart animations
-    quoteEl.classList.remove("fadeOut");
-    authorEl.classList.remove("fadeOut");
-    // Force reflow by accessing offsetHeight (or any layout property)
-    quoteEl.offsetHeight; // This triggers a reflow
-    authorEl.offsetHeight; // This triggers a reflow
+    // Check if the response has the expected structure
+    if (data && data[0] && data[0].quote && data[0].author) {
+      const quote = data[0].quote;
+      const author = data[0].author;
 
-    // Add the fadeIn animation again
-    quoteEl.classList.add("fadeIn");
-    authorEl.classList.add("fadeIn");
+      // Displaying the new quote
+      quoteEl.innerText = quote || "No quote available.";
+      authorEl.innerText = `~ ${author || "Unknown"}`;
+
+      // Reset the animation classes and trigger reflow to restart animations
+      quoteEl.classList.remove("fadeOut");
+      authorEl.classList.remove("fadeOut");
+      quoteEl.offsetHeight; // This triggers a reflow
+      authorEl.offsetHeight; // This triggers a reflow
+
+      // Add the fadeIn animation again
+      quoteEl.classList.add("fadeIn");
+      authorEl.classList.add("fadeIn");
+    } else {
+      console.error("Invalid data structure or missing quote/author");
+      quoteEl.innerText = "An error occurred. Please try again.";
+      authorEl.innerText = "";
+    }
   } catch (error) {
     console.error(error);
     quoteEl.innerText = "An error occurred. Please try again.";
     authorEl.innerText = "";
   } finally {
     // Reset the button text and re-enable it after fetching is done
-    btnEl.innerText = "Get a quote";
-    btnEl.disabled = false;
+    btn.innerText = "Get a quote"; // Use `btn` instead of `btnEl`
+    btn.disabled = false;
   }
 }
 
@@ -87,10 +97,10 @@ function applyTheme() {
 }
 
 // Event listeners
-btnEl.addEventListener("click", getQuote);
+btn.addEventListener("click", getQuote); // Use `btn` instead of `btnEl`
 copyBtn.addEventListener("click", copyQuote);
 themeToggleBtn.addEventListener("click", toggleTheme);
 
 // Initialize dark mode on load
 applyTheme();
-getQuote();
+getQuote(); // Fetch a quote when the page loads

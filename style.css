@@ -45,6 +45,7 @@ body {
   margin: 20px 0;
   opacity: 0;
   animation: fadeIn 1s forwards; /* Fade-in animation */
+  animation-fill-mode: forwards; /* Keeps the element visible after the animation */
 }
 
 .author {
@@ -54,6 +55,7 @@ body {
   color: #cccccc;
   opacity: 0;
   animation: fadeIn 1s forwards 0.5s; /* Fade-in with delay */
+  animation-fill-mode: forwards; /* Keeps the element visible after the animation */
 }
 
 .btn {
@@ -144,6 +146,7 @@ body {
   color: #fff;
   z-index: 10;
 }
+
 /* Animations */
 @keyframes fadeIn {
   0% {
